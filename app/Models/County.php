@@ -19,4 +19,14 @@ class County extends Model
     public function region(){
         return $this->belongsTo(Region::class,'region_id');
     }
+
+
+    //relacion M:M entre pais y sus idiomas
+    public function idiomas(){
+        return $this->belongsToMany(idioma::class,
+                                        'country_languages',
+                                        'country_id',
+                                        'language_id')->
+                                        withPivot('official'); 
+    }
 }
